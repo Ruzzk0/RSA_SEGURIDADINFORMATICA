@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptación RSA</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-rsa/1.0.0/src/NodeRSA.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsencrypt@3.3.0/jsencrypt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <div id="login-container">
+        <div id="login-form">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" placeholder="Usuario" id="username">
+            <input type="password" placeholder="Contraseña" id="password">
+            <button id="login-btn">Iniciar Sesión</button>
+            <p>¿No tienes una cuenta? <a href="#" id="register-link">Regístrate aquí</a></p>
+        </div>
+        <div id="register-form" style="display: none;">
+            <h2>Registro</h2>
+            <input type="text" placeholder="Usuario" id="reg-username">
+            <input type="password" placeholder="Contraseña" id="reg-password">
+            <button id="register-btn">Registrarse</button>
+            <p>¿Ya tienes una cuenta? <a href="#" id="login-link">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+
+    <div id="main-container" style="display: none;">
+        <div id="menu">
+            <a href="#" class="menu-option" id="home-option">Página Principal</a>
+            <a href="#" class="menu-option" id="generate-keys-option">Generar Llaves</a>
+            <a href="#" class="menu-option" id="encrypt-option">Encriptar</a>
+            <a href="#" class="menu-option" id="decrypt-option">Desencriptar</a>
+            <a href="#" class="menu-option" id="about-option">Acerca de</a>
+            <a href="#" class="menu-option" id="logout-option">Salir</a>
+        </div>
+        <div id="content">
+            <div id="home-content" class="content-section">
+                <h2>Bienvenido</h2>
+                <p>
+                    RSA (Rivest-Shamir-Adleman) es uno de los primeros sistemas de cifrado de clave pública y uno de los algoritmos criptográficos más utilizados en la actualidad. <br>
+                     Fue desarrollado en 1977 por Ron Rivest, Adi Shamir y Leonard Adleman. <br>
+                     El sistema RSA se basa en la dificultad de factorizar números enteros grandes que son el producto de dos números primos grandes.<br>
+                      La seguridad del cifrado RSA radica en el problema de la factorización de números enteros, que actualmente no tiene una solución eficiente conocida.
+                </p>
+                
+            </div>
+            <div id="generate-keys-content" class="content-section" style="display: none;">
+                <h2>Generar Llaves</h2>
+                <p>El algoritmo RSA utiliza un par de llaves, una pública y una privada, para permitir la comunicación segura a través de canales inseguros. <br>
+                 La llave pública se comparte abiertamente y se usa para cifrar mensajes, mientras que la llave privada, mantenida en secreto, <br>
+                    se utiliza para descifrarlos. Esto garantiza que solo el destinatario previsto pueda leer los mensajes cifrados, <br>
+                     brindando confidencialidad y seguridad en las comunicaciones.</p>
+                <button id="generate-keys-btn">Generar Llaves</button>
+                <div id="keys-notification" style="display: none;">
+                    <p>Llaves generadas con éxito.</p>
+                </div>
+            </div>
+            <div id="encrypt-content" class="content-section" style="display: none;">
+                <h2>Encriptar</h2>
+                <textarea id="plaintext" placeholder="Ingrese el texto a encriptar"></textarea>
+                <button id="encrypt-btn">Encriptar</button>
+                <div id="encrypted-text" style="display: none;"></div>
+            </div>
+            <div id="decrypt-content" class="content-section" style="display: none;">
+                <h2>Desencriptar</h2>
+                <p>Desencripte el mensaje cifrado utilizando la clave privada.</p>
+                <button id="decrypt-btn">Ver el mensaje desencriptado</button>
+                <div id="decrypted-text" style="display: none;"></div>
+            </div>
+            <div id="about-content" class="content-section" style="display: none;">
+                <h2>Acerca de</h2>
+                <p>Personas encargadas del desarrollo de la página:
+                <br> Cervantes Mellado_244780<br>
+                aqui alguienes más que desean ayudar </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsencrypt/bin/jsencrypt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
