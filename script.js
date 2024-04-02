@@ -1,3 +1,4 @@
+//script que me estaba matando
 const loginForm = document.getElementById('login-form');
 const registerForm = document.getElementById('register-form');
 const mainContainer = document.getElementById('main-container');
