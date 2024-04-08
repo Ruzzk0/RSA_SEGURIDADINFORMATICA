@@ -19,7 +19,9 @@ const encryptedText = document.getElementById('encrypted-text');
 const decryptBtn = document.getElementById('decrypt-btn');
 const decryptedText = document.getElementById('decrypted-text');
 
+console.log("Creando instancia de JSEncrypt...");
 let crypt = new JSEncrypt();
+console.log("Instancia creada:", crypt);
 let privateKey = localStorage.getItem('privateKey');
 let publicKey = localStorage.getItem('publicKey');
 let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
@@ -95,8 +97,9 @@ logoutOption.addEventListener('click', (e) => {
 generateKeysBtn.addEventListener('click', () => {
     crypt = new JSEncrypt();
     const keyPair = crypt.getKey();
-    privateKey = keyPair.privateKey;
-    publicKey = keyPair.publicKey;
+    console.log(keyPair);
+    privateKey = keyPair.getPrivateKey();
+    publicKey = keyPair.getPublicKey();
 
     // Almacenar claves en localStorage
     localStorage.setItem('privateKey', privateKey);
@@ -106,6 +109,11 @@ generateKeysBtn.addEventListener('click', () => {
     setTimeout(() => {
         keysNotification.style.display = 'none';
     }, 3000);
+
+    // Mostrar las llaves en pantalla
+    document.getElementById('private-key').textContent = privateKey;
+    document.getElementById('public-key').textContent = publicKey;
+    document.getElementById('keys-display').style.display = 'block';
 });
 
 // ENCRIPTACION
