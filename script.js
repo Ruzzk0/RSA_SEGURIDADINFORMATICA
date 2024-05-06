@@ -19,12 +19,20 @@ const encryptedText = document.getElementById('encrypted-text');
 const decryptBtn = document.getElementById('decrypt-btn');
 const decryptedText = document.getElementById('decrypted-text');
 
+document.getElementById('back-to-home-from-encrypt').addEventListener('click', () => {
+    // Esconde la sección actual
+    document.getElementById('encrypt-content').style.display = 'none';
+    // Muestra la sección principal
+    document.getElementById('home-content').style.display = 'block';
+});
+
 console.log("Creando instancia de JSEncrypt...");
 let crypt = new JSEncrypt();
 console.log("Instancia creada:", crypt);
 let privateKey = localStorage.getItem('privateKey');
 let publicKey = localStorage.getItem('publicKey');
 let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
 
 // Mostrar/ocultar formularios de inicio de sesión y registro
 registerLink.addEventListener('click', () => {
@@ -95,11 +103,11 @@ logoutOption.addEventListener('click', (e) => {
 
 // funcionalidad de generacion de llaves
 generateKeysBtn.addEventListener('click', () => {
-    crypt = new JSEncrypt();
-    const keyPair = crypt.getKey();
-    console.log(keyPair);
-    privateKey = keyPair.getPrivateKey();
-    publicKey = keyPair.getPublicKey();
+    crypt = new JSEncrypt({default_key_size: 2048}); // Especifica el tamaño de la clave
+    crypt.getKey(); // Genera el par de claves
+
+    privateKey = crypt.getPrivateKey();
+    publicKey = crypt.getPublicKey();
 
     // Almacenar claves en localStorage
     localStorage.setItem('privateKey', privateKey);
@@ -109,11 +117,6 @@ generateKeysBtn.addEventListener('click', () => {
     setTimeout(() => {
         keysNotification.style.display = 'none';
     }, 3000);
-
-    // Mostrar las llaves en pantalla
-    document.getElementById('private-key').textContent = privateKey;
-    document.getElementById('public-key').textContent = publicKey;
-    document.getElementById('keys-display').style.display = 'block';
 });
 
 // ENCRIPTACION
@@ -130,9 +133,7 @@ encryptBtn.addEventListener('click', () => {
 });
 // DESENCRIPTACION
 decryptBtn.addEventListener('click', () => {
-    // Retrieve private key from localStorage
     privateKey = localStorage.getItem('privateKey');
-    publicKey = localStorage.getItem('publicKey');
 
     if (privateKey) {
         crypt.setPrivateKey(privateKey);
