@@ -18,6 +18,19 @@ const encryptedText = document.getElementById('encrypted-text');
 
 const decryptBtn = document.getElementById('decrypt-btn');
 const decryptedText = document.getElementById('decrypted-text');
+const form = document.querySelector('form');
+
+//Captcha idk
+form.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    const captchaResponse = grecaptcha.getResponse();
+
+    if(!captchaResponse.length > 0){
+        alert('REALIZAR CAPTCHA!');
+    }
+
+})
 
 document.getElementById('back-to-home-from-encrypt').addEventListener('click', () => {
     // Esconde la sección actual

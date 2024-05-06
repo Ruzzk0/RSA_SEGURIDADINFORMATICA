@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jsencrypt@3.3.0/jsencrypt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 <body>
@@ -21,6 +22,11 @@
             <h2>Iniciar Sesión</h2>
             <input type="text" placeholder="Usuario" id="username">
             <input type="password" placeholder="Contraseña" id="password">
+            <div>
+                <form>
+                    <div class="g-recaptcha" data-sitekey="6Ld9xtEpAAAAALLO6NWZBfR9FfiFSpyGr3F_5H6E"></div>
+                </form>
+            </div>
             <button id="login-btn">Iniciar Sesión</button>
             <p>¿No tienes una cuenta? <a href="#" id="register-link">Regístrate aquí</a></p>
         </div>
@@ -28,6 +34,11 @@
             <h2>Registro</h2>
             <input type="text" placeholder="Usuario" id="reg-username">
             <input type="password" placeholder="Contraseña" id="reg-password">
+            <div>
+                <form>
+                    <div class="g-recaptcha" data-sitekey="6Ld9xtEpAAAAALLO6NWZBfR9FfiFSpyGr3F_5H6E"></div>
+                </form>
+            </div>
             <button id="register-btn">Registrarse</button>
             <p>¿Ya tienes una cuenta? <a href="#" id="login-link">Inicia sesión aquí</a></p>
         </div>
